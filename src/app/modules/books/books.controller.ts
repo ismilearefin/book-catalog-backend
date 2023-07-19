@@ -67,10 +67,27 @@ const updateSingleBook =async (req:Request,res:Response) => {
         })
     }
 }
+const deleteBook =async (req:Request,res:Response) => {
+    try{
+        const id = req.params.id;
+        const result = await createBookService.deleteBook(id);
+        res.status(200).json({
+            success:true,
+            message:'Deleted Book successfully',
+            data:result
+        })
+    }catch(err){
+        res.status(400).json({
+            success:false,
+            message:'Failed to delete Book'
+        })
+    }
+}
 
 export default {
     createBook,
     getAllBook,
     getSingleBook,
-    updateSingleBook
+    updateSingleBook,
+    deleteBook
 };

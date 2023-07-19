@@ -36,11 +36,20 @@ const updateSingleBook = async(id:string,payload :IBook):Promise<IBook|null>=>{
 
     return updateBook;
 }
+const deleteBook = async(id:string):Promise<IBook|null>=>{
+    const deleteBook = await Book.findByIdAndDelete({_id:id})
+    if(!deleteBook){
+        throw new Error('Something went wrong')
+    }
+
+    return deleteBook;
+}
 
 
 export default{
     createBook,
     getAllBook,
     getSingleBook,
-    updateSingleBook
+    updateSingleBook,
+    deleteBook
 }
