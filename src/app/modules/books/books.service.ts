@@ -26,10 +26,21 @@ const getSingleBook = async(params:string):Promise<IBook|null>=>{
 
     return createdBook;
 }
+const updateSingleBook = async(id:string,payload :IBook):Promise<IBook|null>=>{
+    const updateBook = await Book.findByIdAndUpdate({_id:id},payload,{
+        new: true,
+    })
+    if(!updateBook){
+        throw new Error('Something went wrong')
+    }
+
+    return updateBook;
+}
 
 
 export default{
     createBook,
     getAllBook,
-    getSingleBook
+    getSingleBook,
+    updateSingleBook
 }

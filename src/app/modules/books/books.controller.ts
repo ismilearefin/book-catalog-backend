@@ -50,9 +50,27 @@ const getSingleBook =async (req:Request,res:Response) => {
         })
     }
 }
+const updateSingleBook =async (req:Request,res:Response) => {
+    try{
+        const id = req.params.id;
+        const updatedBook = req.body;
+        const result = await createBookService.updateSingleBook(id, updatedBook);
+        res.status(200).json({
+            success:true,
+            message:'updated Book successfully',
+            data:result
+        })
+    }catch(err){
+        res.status(400).json({
+            success:false,
+            message:'Failed to update Book'
+        })
+    }
+}
 
 export default {
     createBook,
     getAllBook,
-    getSingleBook
+    getSingleBook,
+    updateSingleBook
 };
